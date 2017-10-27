@@ -1,0 +1,114 @@
+layer_size = 800
+
+config = Config(
+	tau = 5.0,
+	tau_gamma = 1.0,
+	tau_m = 1000.0,
+	adapt_gain = 1000.0,
+	h = 0.2,
+	gamma = 5.0,
+	num_iter = 15,
+	lrate = 1e-03,
+)
+
+
+Epoch 0, SE 38.8335, train |E| = 0.5962, test |E| = 0.7750
+Epoch 1, SE 30.9693, train |E| = 0.0403, test |E| = 0.6228
+Epoch 2, SE 24.1337, train |E| = 0.0000, test |E| = 0.4895
+Epoch 3, SE 18.4990, train |E| = 0.0000, test |E| = 0.4029
+Epoch 4, SE 14.5950, train |E| = 0.0000, test |E| = 0.3525
+Epoch 5, SE 11.2286, train |E| = 0.0000, test |E| = 0.3208
+Epoch 6, SE 9.1945, train |E| = 0.0000, test |E| = 0.3014
+Epoch 7, SE 7.8664, train |E| = 0.0000, test |E| = 0.2862
+Epoch 8, SE 6.4448, train |E| = 0.0000, test |E| = 0.2740
+Epoch 9, SE 5.8645, train |E| = 0.0000, test |E| = 0.2658
+Epoch 10, SE 5.0020, train |E| = 0.0000, test |E| = 0.2581
+Epoch 11, SE 4.4685, train |E| = 0.0000, test |E| = 0.2522
+Epoch 12, SE 3.9316, train |E| = 0.0000, test |E| = 0.2469
+Epoch 13, SE 3.5698, train |E| = 0.0000, test |E| = 0.2399
+Epoch 14, SE 3.2919, train |E| = 0.0000, test |E| = 0.2347
+Epoch 15, SE 3.0330, train |E| = 0.0000, test |E| = 0.2308
+Epoch 16, SE 2.7721, train |E| = 0.0000, test |E| = 0.2255
+Epoch 17, SE 2.6070, train |E| = 0.0000, test |E| = 0.2213
+Epoch 18, SE 2.4827, train |E| = 0.0000, test |E| = 0.2183
+Epoch 19, SE 2.2987, train |E| = 0.0000, test |E| = 0.2137
+Epoch 20, SE 2.0920, train |E| = 0.0000, test |E| = 0.2102
+Epoch 21, SE 2.0807, train |E| = 0.0000, test |E| = 0.2076
+Epoch 22, SE 1.9657, train |E| = 0.0000, test |E| = 0.2042
+Epoch 23, SE 1.7678, train |E| = 0.0000, test |E| = 0.2008
+Epoch 24, SE 1.7985, train |E| = 0.0000, test |E| = 0.1984
+Epoch 25, SE 1.6845, train |E| = 0.0000, test |E| = 0.1957
+Epoch 26, SE 1.5531, train |E| = 0.0000, test |E| = 0.1929
+Epoch 27, SE 1.5548, train |E| = 0.0000, test |E| = 0.1910
+Epoch 28, SE 1.3681, train |E| = 0.0000, test |E| = 0.1886
+Epoch 29, SE 1.4627, train |E| = 0.0000, test |E| = 0.1863
+Epoch 30, SE 1.2959, train |E| = 0.0000, test |E| = 0.1850
+Epoch 31, SE 1.3484, train |E| = 0.0000, test |E| = 0.1833
+Epoch 32, SE 1.1964, train |E| = 0.0000, test |E| = 0.1807
+Epoch 33, SE 1.2361, train |E| = 0.0000, test |E| = 0.1790
+Epoch 34, SE 1.1485, train |E| = 0.0000, test |E| = 0.1773
+Epoch 35, SE 1.1285, train |E| = 0.0000, test |E| = 0.1749
+Epoch 36, SE 1.1210, train |E| = 0.0000, test |E| = 0.1729
+Epoch 37, SE 1.0800, train |E| = 0.0000, test |E| = 0.1714
+Epoch 38, SE 1.0571, train |E| = 0.0000, test |E| = 0.1700
+Epoch 39, SE 1.0077, train |E| = 0.0000, test |E| = 0.1685
+Epoch 40, SE 0.9304, train |E| = 0.0000, test |E| = 0.1668
+Epoch 41, SE 1.0164, train |E| = 0.0000, test |E| = 0.1648
+Epoch 42, SE 0.8843, train |E| = 0.0000, test |E| = 0.1636
+Epoch 43, SE 0.9332, train |E| = 0.0000, test |E| = 0.1617
+Epoch 44, SE 0.8506, train |E| = 0.0000, test |E| = 0.1613
+Epoch 45, SE 0.8676, train |E| = 0.0000, test |E| = 0.1603
+Epoch 46, SE 0.8508, train |E| = 0.0000, test |E| = 0.1593
+Epoch 47, SE 0.8116, train |E| = 0.0000, test |E| = 0.1581
+Epoch 48, SE 0.8279, train |E| = 0.0000, test |E| = 0.1574
+Epoch 49, SE 0.7845, train |E| = 0.0000, test |E| = 0.1556
+Epoch 50, SE 0.7524, train |E| = 0.0000, test |E| = 0.1550
+Epoch 51, SE 0.7288, train |E| = 0.0000, test |E| = 0.1543
+Epoch 52, SE 0.7012, train |E| = 0.0000, test |E| = 0.1533
+Epoch 53, SE 0.7162, train |E| = 0.0000, test |E| = 0.1522
+Epoch 54, SE 0.6862, train |E| = 0.0000, test |E| = 0.1512
+Epoch 55, SE 0.7065, train |E| = 0.0000, test |E| = 0.1503
+Epoch 56, SE 0.6928, train |E| = 0.0000, test |E| = 0.1496
+Epoch 57, SE 0.6711, train |E| = 0.0000, test |E| = 0.1482
+Epoch 58, SE 0.6552, train |E| = 0.0000, test |E| = 0.1471
+Epoch 59, SE 0.6412, train |E| = 0.0000, test |E| = 0.1462
+Epoch 60, SE 0.6065, train |E| = 0.0000, test |E| = 0.1455
+Epoch 61, SE 0.5900, train |E| = 0.0000, test |E| = 0.1443
+Epoch 62, SE 0.5909, train |E| = 0.0000, test |E| = 0.1439
+Epoch 63, SE 0.5635, train |E| = 0.0000, test |E| = 0.1429
+Epoch 64, SE 0.5560, train |E| = 0.0000, test |E| = 0.1421
+Epoch 65, SE 0.5585, train |E| = 0.0000, test |E| = 0.1413
+Epoch 66, SE 0.5736, train |E| = 0.0000, test |E| = 0.1406
+Epoch 67, SE 0.5163, train |E| = 0.0000, test |E| = 0.1400
+Epoch 68, SE 0.5138, train |E| = 0.0000, test |E| = 0.1395
+Epoch 69, SE 0.5129, train |E| = 0.0000, test |E| = 0.1389
+Epoch 70, SE 0.5153, train |E| = 0.0000, test |E| = 0.1383
+Epoch 71, SE 0.5096, train |E| = 0.0000, test |E| = 0.1373
+Epoch 72, SE 0.5359, train |E| = 0.0000, test |E| = 0.1366
+Epoch 73, SE 0.4793, train |E| = 0.0000, test |E| = 0.1362
+Epoch 74, SE 0.4728, train |E| = 0.0000, test |E| = 0.1357
+Epoch 75, SE 0.4906, train |E| = 0.0000, test |E| = 0.1349
+Epoch 76, SE 0.4646, train |E| = 0.0000, test |E| = 0.1343
+Epoch 77, SE 0.4567, train |E| = 0.0000, test |E| = 0.1338
+Epoch 78, SE 0.4677, train |E| = 0.0000, test |E| = 0.1334
+Epoch 79, SE 0.4394, train |E| = 0.0000, test |E| = 0.1330
+Epoch 80, SE 0.4145, train |E| = 0.0000, test |E| = 0.1324
+Epoch 81, SE 0.4509, train |E| = 0.0000, test |E| = 0.1320
+Epoch 82, SE 0.3997, train |E| = 0.0000, test |E| = 0.1316
+Epoch 83, SE 0.4151, train |E| = 0.0000, test |E| = 0.1313
+Epoch 84, SE 0.4046, train |E| = 0.0000, test |E| = 0.1302
+Epoch 85, SE 0.4043, train |E| = 0.0000, test |E| = 0.1294
+Epoch 86, SE 0.3824, train |E| = 0.0000, test |E| = 0.1288
+Epoch 87, SE 0.3954, train |E| = 0.0000, test |E| = 0.1285
+Epoch 88, SE 0.3943, train |E| = 0.0000, test |E| = 0.1280
+Epoch 89, SE 0.4007, train |E| = 0.0000, test |E| = 0.1278
+Epoch 90, SE 0.3919, train |E| = 0.0000, test |E| = 0.1277
+Epoch 91, SE 0.3705, train |E| = 0.0000, test |E| = 0.1273
+Epoch 92, SE 0.3669, train |E| = 0.0000, test |E| = 0.1268
+Epoch 93, SE 0.3660, train |E| = 0.0000, test |E| = 0.1264
+Epoch 94, SE 0.3570, train |E| = 0.0000, test |E| = 0.1258
+Epoch 95, SE 0.3495, train |E| = 0.0000, test |E| = 0.1257
+Epoch 96, SE 0.3604, train |E| = 0.0000, test |E| = 0.1251
+Epoch 97, SE 0.3440, train |E| = 0.0000, test |E| = 0.1247
+Epoch 98, SE 0.3391, train |E| = 0.0000, test |E| = 0.1245
+Epoch 99, SE 0.3229, train |E| = 0.0000, test |E| = 0.1245
