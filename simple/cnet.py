@@ -33,14 +33,14 @@ Wcp = [w.copy() for w in W]
 B = np.random.random((net_structure[-1], net_structure[-2]))*1.0
 
 fb_factor = 1.0
-tau = 10.0
+tau = 5.0
 num_iters = 2000
 h = 0.1
 
 tau_apical = 2.0
 tau_basal = 2.0
 
-lrate = 0.1
+lrate = 0.01
 
 
 # sp_code = False
@@ -65,14 +65,18 @@ for i in xrange(num_iters):
     in0 = x - np.dot(r0, W[0].T)
     # in0 = x
     
-    # basal_state0 += h * (-basal_state0/tau_basal + in0)
-    # apical_state0 += h * (-apical_state0/tau_apical + e)
+    basal_state0 += h * (-basal_state0/tau_basal + in0)
+    apical_state0 += h * (-apical_state0/tau_apical + (e - np.dot(r0, B.T)))
 
-    bottom_up0 = np.dot(in0, W[0])
-    top_down0 = np.dot(e, B)
+    bottom_up0 = np.dot(basal_state0, W[0])
+    top_down0 = np.dot(apical_state0, B)
     
-    h0 += h * (bottom_up0 + fb_factor * top_down0)
-    # h0 += h * (-h0 + bottom_up0 + fb_factor * top_down0)/tau
+    # bottom_up0 = np.dot(in0, W[0])
+    # top_down0 = np.dot(e, B)
+
+    # h0 += h * (bottom_up0 + fb_factor * top_down0)
+    h0 += h * (-h0 + bottom_up0 + fb_factor * top_down0)/tau
+    # h0 += h * (-h0 + (bottom_up0 - h0) + fb_factor * (top_down0 - h0))/tau
     
     r0 = act(h0)
 
