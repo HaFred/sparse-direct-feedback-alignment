@@ -38,17 +38,17 @@ B = np.random.random((net_structure[-1], net_structure[-2]))*1.0
 
 fb_factor = 1.0
 tau = 5.0
-num_iters = 50
+num_iters = 200
 h = 0.1
 
 tau_apical = 2.0
 tau_basal = 2.0
 
-lrate = 0.05
+lrate = 0.1
 
 
 # sp_code = False
-
+predictive_output = False
 
 h0_h = np.zeros((num_iters, net_structure[0]))
 e0_h = np.zeros((num_iters))
@@ -67,25 +67,29 @@ for i in xrange(num_iters):
     in0 = x - np.dot(r0, W[0].T)
     top_down0 = e
     
-    h0 += h * (np.dot(in0, W[0]) - fb_factor * np.dot(e, W[1].T))
+    h0 += h * (np.dot(in0, W[0]) - fb_factor * np.dot(top_down0, W[1].T))
     
     r0 = act(h0)
 
 
     e = y_t - r1
-    in1 = np.dot(e, W[1].T)
-
-    h1 += h * np.dot(in1, W[1])
+    
+    if predictive_output:
+        in1 = np.dot(e, W[1].T)
+        h1 += h * np.dot(in1, W[1])
+    else:
+        h1 = np.dot(r0, W[1])
+    
     r1 = act(h1)
 
     error = np.asarray((
         np.sum(in0 ** 2.0),
-        np.sum(in1 ** 2.0),
+        np.sum(e ** 2.0),
     ))
 
 
     # dW0 = np.outer(x, np.dot(e, W[0].T) )
-    dW0 = np.outer(x, h0 * act.deriv(top_down0))
+    dW0 = np.outer(in0, h0 * act.deriv(top_down0))
     
     dW1 = np.outer(r0, e)
     
@@ -101,3 +105,5 @@ for i in xrange(num_iters):
 
 
 shl(h1_h, np.asarray([y_t]*num_iters),np.asarray([3.0]*num_iters))
+
+
