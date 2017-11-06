@@ -26,6 +26,15 @@ class Sigmoid(Act):
         return v * (1.0 - v)
 
 
+
+class Softmax(Act):
+    def __call__(self, x):
+        e_x = np.exp(x-np.max(x))
+        return e_x / e_x.sum(axis=0)
+        
+    def deriv(self, x):
+        raise NotImplementedError
+
 class Relu(Act):
     def __call__(self, x):
         return np.maximum(x, 0.0)
