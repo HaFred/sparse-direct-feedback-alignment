@@ -29,8 +29,10 @@ class Sigmoid(Act):
 
 class Softmax(Act):
     def __call__(self, x):
-        e_x = np.exp(x-np.max(x))
-        return e_x / e_x.sum(axis=0)
+        e_x = np.exp(x - np.max(x))
+        e_x_sum = np.sum(e_x, axis=1, keepdims=True)
+        
+        return e_x / e_x_sum
         
     def deriv(self, x):
         raise NotImplementedError
