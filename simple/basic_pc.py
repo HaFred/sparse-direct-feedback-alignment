@@ -6,7 +6,7 @@ import numpy as np
 from util import *
 from gradflow.gradflow_util import *
 
-np.random.seed(4)
+# np.random.seed(5)
 
 act = Linear()
 act_o = Linear()
@@ -17,9 +17,9 @@ x = np.ones((input_size,))
 lrule = Learning.BP
 
 
-y_t = np.asarray([0.3])
+y_t = np.asarray([0.8])
 
-net_structure = (1,1)
+net_structure = (10,1)
 
 
 S = lambda x: np.log(1.0 + np.square(x))
@@ -38,13 +38,13 @@ B = np.random.random((net_structure[-1], net_structure[-2]))*1.0
 
 fb_factor = 1.0
 tau = 5.0
-num_iters = 200
+num_iters = 100
 h = 0.1
 
 tau_apical = 2.0
 tau_basal = 2.0
 
-lrate = 0.1
+lrate = 0.0
 
 
 # sp_code = False
@@ -67,7 +67,7 @@ for i in xrange(num_iters):
     in0 = x - np.dot(r0, W[0].T)
     top_down0 = e
     
-    h0 += h * (np.dot(in0, W[0]) - fb_factor * np.dot(top_down0, W[1].T))
+    h0 += h * (np.dot(in0, W[0]) + fb_factor * np.dot(top_down0, W[1].T))
     
     r0 = act(h0)
 
@@ -75,8 +75,11 @@ for i in xrange(num_iters):
     e = y_t - r1
     
     if predictive_output:
-        in1 = np.dot(e, W[1].T)
-        h1 += h * np.dot(in1, W[1])
+        # in1 = np.dot(e, W[1].T)
+        # h1 += h * np.dot(in1, W[1])
+
+        in1 = y_t - (r1 - np.dot(r0, W[1]))
+        h1 += h * in1
     else:
         h1 = np.dot(r0, W[1])
     
@@ -88,13 +91,13 @@ for i in xrange(num_iters):
     ))
 
 
-    # dW0 = np.outer(x, np.dot(e, W[0].T) )
-    dW0 = np.outer(in0, h0 * act.deriv(top_down0))
+    # dW0 = -np.outer(in0, np.dot(e, W[1].T) )
     
-    dW1 = np.outer(r0, e)
+    dW0 = -np.outer(in0, r0 * act.deriv(top_down0))
+    dW1 = -np.outer(r0, e)
     
-    W[0] += lrate * dW0
-    W[1] += lrate * dW1
+    W[0] -= lrate * dW0
+    W[1] -= lrate * dW1
 
     print "i {}, error {}".format(i, ", ".join(["{:.4f}".format(ee) for ee in error]))
 

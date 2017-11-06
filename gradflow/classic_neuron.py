@@ -14,18 +14,18 @@ lrule = Learning.BP
 
 epochs = 1
 
-y_t = 0.1
+y_t = 0.5
 
 
 W0 = 1.0
 W1 = 1.0
 B0 = 1.0
 slice_size = 25
-fb_factor = 0.5
+fb_factor = 0.0
 keep_factor = 1.0 - fb_factor
 
-W0a = np.linspace(0, 2.0, slice_size)
-W1a = np.linspace(0, 2.0, slice_size)
+W0a = np.linspace(-1, 1.0, slice_size)
+W1a = np.linspace(-1, 1.0, slice_size)
 
 W0res = np.zeros((slice_size, slice_size))
 W1res = np.zeros((slice_size, slice_size))
@@ -35,6 +35,8 @@ error_res = np.zeros((slice_size, slice_size))
 
 for ri, W0 in enumerate(W0a):
     for ci, W1 in enumerate(W1a):
+
+        # W0, W1 = 0.5, 0.5
         for epoch in xrange(epochs):
 
             a0 = x * W0; h0 = act(a0)
@@ -62,11 +64,7 @@ for ri, W0 in enumerate(W0a):
                 dW1 = h0 * e
                                 
                 
-            # W0 += lrate * dW0
-            # W1 += lrate * dW1
-
-            print "Epoch {}, error {}".format(epoch, error)
-
+            
             W0res[ri, ci] = W0
             W1res[ri, ci] = W1
             dW0res[ri, ci] = dW0
@@ -74,13 +72,15 @@ for ri, W0 in enumerate(W0a):
             
             error_res[ri, ci] = error
 
+            # W0 -= lrate * dW0
+            # W1 -= lrate * dW1
 
-dW0res = np.clip(dW0res, -0.5, 0.5)
-dW1res = np.clip(dW1res, -0.5, 0.5)
+dW0res = np.clip(dW0res, -1.0, 1.0)
+dW1res = np.clip(dW1res, -1.0, 1.0)
 
 plot = plt.figure()
 plt.quiver(
-    W0res, W1res, dW0res, dW0res,
+    W0res, W1res, dW0res, dW1res,
     error_res,
     cmap=cm.seismic,     # colour map
     headlength=7, headwidth=5.0)        # length of the arrows
