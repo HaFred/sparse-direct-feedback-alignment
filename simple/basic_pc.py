@@ -1,25 +1,26 @@
 
 import sys
+sys.path.insert(0, "/home/alexeyche/prog/sparse-direct-feedback-alignment")
 from matplotlib import pyplot as plt
 from matplotlib.pyplot import cm
 import numpy as np
 from util import *
 from gradflow.gradflow_util import *
 
-# np.random.seed(5)
+np.random.seed(1)
 
 act = Linear()
 act_o = Linear()
 
-input_size = 1
+input_size = 2
 x = np.ones((input_size,))
 
 lrule = Learning.BP
 
 
-y_t = np.asarray([0.8])
+y_t = np.asarray([0.2])
 
-net_structure = (10,1)
+net_structure = (1,1)
 
 
 S = lambda x: np.log(1.0 + np.square(x))
@@ -27,7 +28,7 @@ dS = lambda x: 2.0 * x / (np.square(x) + 1.0)
 
 
 W = list(
-    np.random.random((net_structure[li-1] if li > 0 else input_size, size))*1.0
+    np.random.randn(*(net_structure[li-1] if li > 0 else input_size, size))*1.0
     for li, size in enumerate(net_structure)
 )
 
@@ -36,10 +37,10 @@ Wcp = [w.copy() for w in W]
 
 B = np.random.random((net_structure[-1], net_structure[-2]))*1.0
 
-fb_factor = 1.0
-tau = 5.0
+fb_factor = 0.0
+tau = 10.0
 num_iters = 100
-h = 0.1
+h = 0.02
 
 tau_apical = 2.0
 tau_basal = 2.0
@@ -55,14 +56,15 @@ e0_h = np.zeros((num_iters))
 h1_h = np.zeros((num_iters, net_structure[1]))
 e1_h = np.zeros((num_iters))
 y_h = np.zeros((num_iters))
-
+x_hat_h = np.zeros((num_iters, input_size))
+in0_h = np.zeros((num_iters, input_size))
 
 h0 = np.zeros(net_structure[0])
 r0 = np.zeros(net_structure[0])
 h1 = np.zeros(net_structure[1])
 r1 = np.zeros(net_structure[1])
-
 e = np.zeros((net_structure[-1]))
+
 for i in xrange(num_iters):
     in0 = x - np.dot(r0, W[0].T)
     top_down0 = e
@@ -105,8 +107,9 @@ for i in xrange(num_iters):
     e0_h[i] = error[0]
     h1_h[i] = h1.copy()
     e1_h[i] = error[1]
+    x_hat_h[i] = np.dot(r0, W[0].T)
+    in0_h[i] = in0.copy()
 
-
-shl(h1_h, np.asarray([y_t]*num_iters),np.asarray([3.0]*num_iters))
-
+# shl(h1_h, np.asarray([y_t]*num_iters),np.asarray([3.0]*num_iters))
+shl(e0_h)
 

@@ -40,7 +40,7 @@ net_structure = (100, 20, output_size)
 
 
 W = list(
-    np.random.random((net_structure[li-1] if li > 0 else input_size, size))*0.1
+    np.random.randn((net_structure[li-1] if li > 0 else input_size, size))*0.1
     for li, size in enumerate(net_structure)
 )
 
